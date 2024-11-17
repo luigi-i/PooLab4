@@ -1,11 +1,11 @@
 public class Climatizacion {
 
-    private static boolean ON;
-    private static int ventEspecifica;
-    private static boolean mute;
-    private static int tempSistema;
-    private static boolean fog;
-    private static int humedad;
+    private static boolean ON = false;
+    private static int ventEspecifica = 0;
+    private static boolean mute = false;
+    private static int tempSistema = 20;
+    private static boolean fog = false;
+    private static int humedad = 0;
 
     public static boolean isON() { //retorna si el aire esta encendido o no
         return ON;
@@ -13,6 +13,14 @@ public class Climatizacion {
     public static void setON() { //si esta encendido lo apaga y viceversa
         ON = !ON;
     }
+
+    public static String showON(){
+        if (Climatizacion.ON ){
+            return "ON";
+        }
+        else return "OFF";
+    }
+
 
     public static boolean isMute() {//retorna si el modo silencioso esta encendido o no
         return mute;
