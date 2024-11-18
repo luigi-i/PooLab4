@@ -119,6 +119,7 @@ public class Main {
                         Climatizacion.setFog();
                         Msg = "Se ha cambiado la configuracion del desempañador a: " + Climatizacion.showFog();
 
+                        break;
                     case 7:
                         int case7 = 0;
 
@@ -131,6 +132,8 @@ public class Main {
                         }catch (Exception e){
                             Msg = "Por favor ingrese un numero entre 0 y 3";
                         }
+
+                        break;
                 }
         }
     }
