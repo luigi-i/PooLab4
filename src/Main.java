@@ -50,8 +50,8 @@ public class Main {
             //al seleccionar otra opcion mostrar la interfaz segun la opcion que escoja
 
                 System.out.println("1.Ajustar grado de temperatura Grado a grado");
-                System.out.println("2.Ajustar temperatura Segun el clima externo"); //pendiente de interfaz
-                System.out.println("3.Nivel de ventilacion"); //pendiente de interfaz
+                System.out.println("2.Ajustar temperatura Segun el clima externo");
+                System.out.println("3.Nivel de ventilacion");
                 System.out.println("4.Modo calefaccion");
                 System.out.println("5.Distribucion de aire");
                 System.out.println("6.Desempañador");
@@ -90,7 +90,7 @@ public class Main {
                         System.out.println("Ingresar temperatura del clima externo");
                         int level = sc.nextInt();
                         clima.adjustVetn(level);
-                        System.out.println("La temperatura acutal es de" + Climatizacion.getTempSistema());
+                        System.out.println("La temperatura acutal es de :" + Climatizacion.getTempSistema());
                         break;
                     case 3:
                         System.out.println("Ventilacion");
@@ -98,6 +98,31 @@ public class Main {
                         System.out.println("2.Ventilacion Automatica");
                         System.out.println("3.Ventilacion en Sona especifica");
                         System.out.println("4.Modo Silencioso");
+                        int opcion3 = sc.nextInt();
+                        switch(opcion3){
+                            case 1:
+                                System.out.println("Escoja un modo:1.Bajo,2.Medio,3.Alto");
+                                int level_V = sc.nextInt();
+                                clima.adjustVetn(level_V);
+                                System.out.println("Ventilacion en :"+clima.adjustVetn(level_V));
+                                break;
+                            case 2:
+                                System.out.println("Ventilacion Automatica" + clima.Ventauto());
+                                break;
+                            case 3:
+                                System.out.println("Ventilacion en Sona especifica: 1.Ventilacion hacia los pies,2.Ventilacion hacia el parabrisas");
+                                int level_E= sc.nextInt();
+                                clima.VentEspecifica(level_E);
+                                System.out.println("La ventilacion esta en:"+clima.VentEspecifica(level_E));
+                                break;
+                            case 4:
+                                System.out.println("Modo Silencioso");
+                                clima.switchMute();
+                                System.out.println(clima.isonMute());
+                                break;
+
+                    }
+
                         break;
                     case 4:
                         System.out.println("1.Calefaccion rapida");

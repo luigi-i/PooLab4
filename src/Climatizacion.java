@@ -37,7 +37,7 @@ public class Climatizacion implements NivelVentilacion,ControlHumedad,Calefaccio
         }
     }
     @Override
-    public String Ventauto(int level_A){
+    public String Ventauto(){
         // Temperatura cómoda definida
         return "Ventilacion automatica activada, Modo Medio a 22°C";
     }
