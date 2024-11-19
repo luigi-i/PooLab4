@@ -121,7 +121,15 @@ public class Climatizacion implements NivelVentilacion,ControlHumedad,Calefaccio
         return fog;
     }
     public static void setFog() {//si esta encendido lo apaga y viceversa
-        fog = !fog;
+        if (fog){
+            fog = !fog;
+        }
+        else{
+            fog = !fog;
+            setventEspecifica(1); // manda el aire al limpiaparabrisas cuando se activa el desempañador (puntos up)
+        }
+
+
     }
 
     public static String showFog(){
