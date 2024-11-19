@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
         Climatizacion clima=new Climatizacion();
@@ -7,6 +9,9 @@ public class Main {
         int opcion = 0; //opcion para encender el sistema
         int opcion2 = 0; //opcion elegida del menu
         String Msg = ""; //String asignado para mostrar los mensajes
+
+        LocalDate today = LocalDate.now();//Sirve para llevar registro de los mantenimientos
+        String case8Cal = "---";//Registro del mantenimiento de la calefaccion, era necesario declararlo aqui para que no se borrase dentro del loop
 
         System.out.println("\033c"); //limpia la terminal
         while (opcion != 1) { //mientras no se encienda el sistema se repite este while
@@ -42,30 +47,29 @@ public class Main {
             System.out.println("\n" + Msg + "\n");
 
 
-            Msg = "---"; //vuelve a resetear el mensaje de error
+
             System.out.println("------------------------");
             //primera interfaz solo encender
 
             //ya encendido el programa dar las demas interfazes
             //al seleccionar otra opcion mostrar la interfaz segun la opcion que escoja
 
-                System.out.println("1.Ajustar grado de temperatura Grado a grado");
-                System.out.println("2.Ajustar temperatura Segun el clima externo");
-                System.out.println("3.Nivel de ventilacion");
-                System.out.println("4.Modo calefaccion");
-                System.out.println("5.Distribucion de aire");
-                System.out.println("6.Desempañador");
-                System.out.println("7.Control de humedad");
-                System.out.println("8.Mantenimiento");
-                System.out.println("9.Apagar");
-                System.out.println("10. Salir");
+            System.out.println("1.Ajustar grado de temperatura Grado a grado");
+            System.out.println("2.Ajustar temperatura Segun el clima externo");
+            System.out.println("3.Nivel de ventilacion");
+            System.out.println("4.Modo calefaccion");
+            System.out.println("5.Distribucion de aire");
+            System.out.println("6.Desempañador");
+            System.out.println("7.Control de humedad");
+            System.out.println("8.Mantenimiento");
+            System.out.println("9. Salir");
 
-                try {
-                    opcion2 = sc.nextInt();
-                } catch (Exception e) {opcion2 = 0 ;}
+            try {
+                opcion2 = sc.nextInt();
+            } catch (Exception e) {opcion2 = 0 ;}
 
-                sc.nextLine();
-                switch (opcion2) {
+            sc.nextLine();
+            switch (opcion2) {
 
                     case 1:
                         int case1 = 0;
@@ -159,6 +163,47 @@ public class Main {
                         }
 
                         break;
+                case 8:
+
+                    int case8;
+                    int case8CalInt = 0;
+
+                    System.out.println("\033c");
+
+                    System.out.println("------------------------");
+                    System.out.println("--- Calendario de mantenimientos ---");
+                    System.out.println("------------------------\n");
+                    System.out.println("-Cambio de filtro: " + today.plusMonths(12));
+                    System.out.println("-Revision de mangueras: " + today.plusMonths(3).plusDays(15));
+                    System.out.println("-Limpieza del compresor: " + today.plusMonths(4));
+                    System.out.println("-Revision del nivel de refrigerante: " + today.plusMonths(2));
+                    System.out.println("------------------------\n");
+
+                    System.out.println("Presione 1 para programar la fecha de mantenimiento para la calefaccion");
+                    System.out.println("Presione cualquier letra para regresar al menu principal");
+                    try {
+                        case8 = sc.nextInt();
+                        if (case8 == 1){
+                            System.out.println("\033c");
+                            System.out.println("Mantenimiento de la calefaccion programado dentro de: " + case8Cal);
+                            System.out.println("Ingrese el numero de semanas a programar el mantenimiento");
+                            System.out.println("Presione cualquier letra para salir");
+                            try {
+                                case8CalInt = sc.nextInt();
+                                case8Cal = case8CalInt + " semanas";
+                                Msg = "Mantenimiento de la calefaccion programado para dentro de " + case8Cal;
+
+                            }catch (Exception e){Msg = "Si desea programar el mantenimiento de la calefaccion, presione: 8 -> 1" ;}
+                        }
+
+                    }catch (Exception e){Msg = "Si desea programar el mantenimiento de la calefaccion, presione: 8 -> 1" ;}
+                    break;
+                case 9:
+                    System.out.println("\033c");
+                    System.out.println("Saliendo...");
+                    seguir = false;
+
+
                 }
         }
     }
