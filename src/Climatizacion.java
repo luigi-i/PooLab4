@@ -86,7 +86,9 @@ public class Climatizacion implements NivelVentilacion,ControlHumedad,Calefaccio
     private static boolean mute = false;
     private static int tempSistema = 20;
     private static boolean fog = false;
+    private static boolean fog2 = false;
     private static int humedad = 0;
+    private static boolean ECO = false;
 
 
     public static boolean isON() { //retorna si el aire esta encendido o no
@@ -98,7 +100,7 @@ public class Climatizacion implements NivelVentilacion,ControlHumedad,Calefaccio
 
     public static String showON(){
         if (Climatizacion.ON ){
-            return "ON";
+            return "ON"; //regresa ON u OFF en un String
         }
         else return "OFF";
     }
@@ -106,22 +108,21 @@ public class Climatizacion implements NivelVentilacion,ControlHumedad,Calefaccio
 
     public static boolean isMute() {//retorna si el modo silencioso esta encendido o no
         return mute;
-    }
-    public static void setMute() {//si esta encendido lo apaga y viceversa
-        mute = !mute;
-    }
+    }//getter simple
+
 
     public static String showMute(){
         if(Climatizacion.mute){ return "ON";}
-        else return "OFF";
+        else return "OFF"; //regresa ON u OFF en un String
     }
 
 
-    public static boolean isFog() {//retorna si el desempanador esta encendido o no
-        return fog;
+    public static boolean getFog(){
+        return fog;//getter simple
     }
-    public static void setFog() {//si esta encendido lo apaga y viceversa
-        if (fog){
+
+    public static void setFog() {
+        if (fog){//si esta encendido lo apaga y viceversa
             fog = !fog;
         }
         else{
@@ -131,22 +132,38 @@ public class Climatizacion implements NivelVentilacion,ControlHumedad,Calefaccio
 
 
     }
-
     public static String showFog(){
         if(Climatizacion.fog){ return "Encendido";}
-        else return "Apagado";
+        else return "Apagado";//regresa apagado u encendido en un String
     }
+
+    public static boolean getFog2(){
+        return fog2; //getter simple
+    }
+
+    public static void setFog2(boolean mode){ //Desempañador lateral (puntos up)
+        fog2 = mode; //setter simple
+        if(mode){//si se esta encendiendo, dirige el desempañador al frontal
+            setventEspecifica(1);
+        }
+
+    }
+    public static String showFog2(){
+        if(Climatizacion.fog2){ return "Encendido";}
+        else{return "Apagado";}//regresa apagado u encendido en un String
+    }
+
 
 
     public static int getTempSistema() {
-        return tempSistema;
+        return tempSistema; //getter simple
     }
 
     public static void tempUp(){
-        tempSistema += 1;
+        tempSistema += 1; //sube 1 a la temperatura
     }
     public static void tempDown(){
-        tempSistema -= 1;
+        tempSistema -= 1; // baja 1 a la temperatura
     }
 
     public static void setTempSistema(int tempSistema) {
@@ -161,13 +178,14 @@ public class Climatizacion implements NivelVentilacion,ControlHumedad,Calefaccio
     }
 
     public static int getventEspecifica() {
-        return ventEspecifica;
+        return ventEspecifica; //getter simple
     }
+
     public static void setventEspecifica(int ventEspecifica) {
         if (ventEspecifica >= 1 && ventEspecifica <= 3) {
             Climatizacion.ventEspecifica = ventEspecifica;
-        }
-        else {
+        } //Pone la ventilacion en la direccion ingresada
+        else {//si ese valor no esta disponible, la pone en frontal
             Climatizacion.ventEspecifica = 1;}
     }
 
@@ -175,21 +193,40 @@ public class Climatizacion implements NivelVentilacion,ControlHumedad,Calefaccio
         if (Climatizacion.ventEspecifica == 1) { return "Parabrisas";}
         else if (Climatizacion.ventEspecifica == 2) { return "Pies";}
         else if (Climatizacion.ventEspecifica == 3) { return "Frontal";}
-        else { return "OFF";}
+        else { return "OFF";} //Asigna un String para mostrar en la pantalla segun la opcion actual
     }
 
 
 
     public static int getHumedad() {
-        return humedad;
+        return humedad; //getter simple
     }
     public static void setHumedad(int humedad) {
-        if (humedad >= 0 && humedad <= 3) {
+        if (humedad >= 0 && humedad <= 3) {//Asigna a la humedad el valor ingresado
             Climatizacion.humedad = humedad;
         } else {
-            Climatizacion.humedad = 0;  // Asignamos 0 si no es un valor válido
+            Climatizacion.humedad = 0;  // Se asigna 0 si no es un valor válido
 
         }
+    }
+
+    public static String showECO(){
+        if (ECO){
+            return "ON";//regresa ON u OFF en un String
+        }
+        else return "OFF";
+    }
+
+    public static boolean getECO(){
+        return ECO;//getter simple
+    }
+
+    public static void setECO(boolean mode){
+        ECO = mode;//setter simple
+    }
+
+    public static void switchECO(){
+        ECO = !ECO; //cambia entre ON y OFF
     }
 
 
